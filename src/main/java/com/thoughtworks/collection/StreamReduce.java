@@ -1,7 +1,5 @@
 package com.thoughtworks.collection;
 
-import org.apache.commons.lang3.NotImplementedException;
-
 import java.util.List;
 
 public class StreamReduce {
@@ -10,14 +8,23 @@ public class StreamReduce {
     }
 
     public int getLastOdd(List<Integer> numbers) {
-        throw new NotImplementedException();
+        return numbers
+                .stream()
+                .reduce(0, (firstNum, secNum) -> secNum % 2 != 0 ? secNum : firstNum);
     }
 
+
     public String getLongest(List<String> words) {
-        throw new NotImplementedException();
+        return words
+                .stream()
+                .reduce("", (firstWord, secondWord) -> secondWord.length() > firstWord.length()
+                        ? secondWord : firstWord);
     }
 
     public int getTotalLength(List<String> words) {
-        throw new NotImplementedException();
+        return words
+                .stream()
+                .map(String::length)
+                .reduce(0, Integer::sum);
     }
 }
